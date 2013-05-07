@@ -1,5 +1,4 @@
-#ifndef PROBLEM_HPP_INCLUDED
-#define PROBLEM_HPP_INCLUDED
+#pragma once
 
 #include <boost/function.hpp>
 #include <vector>
@@ -130,4 +129,3 @@ namespace problem
 
 }
 
-#endif // PROBLEM_HPP_INCLUDED
