@@ -33,8 +33,14 @@ target_link_libraries(boost-playground ${Boost_LIBRARIES})
 target_link_libraries(calculator-tests bogus-calculator ${Boost_LIBRARIES})
 target_link_libraries(tests-tester ${Boost_LIBRARIES})
 
+get_filename_component(calculator_tests_path calculator-tests ABSOLUTE)
+
 add_custom_target(run
+    COMMAND tests-tester --input ${CMAKE_BINARY_DIR}/calculator-tests
+    COMMENT "Running all executables"
+)
+
+add_custom_target(run_all
     COMMAND calculator-tests
     COMMAND boost-playground
-    COMMENT "Running all executables"
 )
