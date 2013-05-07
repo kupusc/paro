@@ -1,0 +1,11 @@
+*.out
+*.zip
+*.so
+*.lib
+*.a
+*.o
+output/
+CMakeFiles/
+CMakeCache.txt
+Makefile
+*.cmake

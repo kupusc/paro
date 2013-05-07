@@ -1,0 +1,34 @@
+DEFINES = TIXML_USE_STL	;
+
+SOURCES =
+   	tinyxml.cpp
+	tinyxmlparser.cpp
+	tinyxmlerror.cpp
+	tinystr.cpp
+	; 
+
+TEST_SOURCES =
+   	xmltest.cpp
+	; 
+	
+XML_LIBRARIES = $(BOOST_MT_ROOT)/test_framework/tinyxml//tinyxml ;
+		  
+lib tinyxml : 
+	$(SOURCES) 
+	: <link>static 
+	<include>$(INCLUDES)
+	<define>$(DEFINES)
+	; 
+
+exe xmltest : 
+	$(TEST_SOURCES)
+	$(XML_LIBRARIES)
+	: 
+	<include>$(INCLUDES)
+	<define>$(DEFINES)
+	<linkflags>/INCREMENTAL:YES
+	<embed-manifest>off
+	;
+
+
+
