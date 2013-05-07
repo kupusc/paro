@@ -1,5 +1,5 @@
-#include "problem.hpp"
-#include "bugintroducer.h"
+#include <calculator.hpp>
+#include <bug-introducer.hpp>
 #include <boost/bind.hpp>
 #include <boost/thread.hpp>
 #include <vector>

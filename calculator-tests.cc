@@ -2,6 +2,9 @@
 #include <unistd.h>
 
 #define BOOST_AUTO_TEST_MAIN
+#define BOOST_TEST_MODULE calculator_tests
+#define BOOST_TEST_DYN_LINK
+
 #include <boost/test/auto_unit_test.hpp>
 #include <original_boost_mt_core/test_framework/turtle/mock.hpp>
 #include <boost/bind.hpp>
@@ -13,7 +16,7 @@
 #include <boost/thread.hpp>
 #include <boost/foreach.hpp>
 
-#include <problem.hpp>
+#include <calculator.hpp>
 
 using namespace std;
 
