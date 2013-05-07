@@ -36,7 +36,7 @@ target_link_libraries(tests-tester ${Boost_LIBRARIES})
 get_filename_component(calculator_tests_path calculator-tests ABSOLUTE)
 
 add_custom_target(run
-    COMMAND tests-tester --input ${CMAKE_BINARY_DIR}/calculator-tests
+    COMMAND tests-tester --input ${CMAKE_BINARY_DIR}/calculator-tests --verbose
     COMMENT "Running all executables"
 )
 
