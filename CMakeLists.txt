@@ -14,8 +14,10 @@ configure_file (
 add_definitions(-include config.h)
 
 set(BUILD_SHARED_LIBS true)
+set(Boost_NO_SYSTEM_PATHS true)
+set(BOOST_ROOT /work/boost_1.46.1)
 
-find_package( Boost COMPONENTS unit_test_framework thread program_options)
+find_package( Boost 1.46.1 COMPONENTS unit_test_framework thread program_options)
 
 include_directories(
     ${PROJECT_BINARY_DIR}
