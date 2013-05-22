@@ -4,7 +4,11 @@
 *.lib
 *.a
 *.o
+*.swp
+*.txt.wsp
+*~*
 output/
+build/
 CMakeFiles/
 CMakeCache.txt
 Makefile
