@@ -56,6 +56,10 @@ add_custom_target(run
 
 add_custom_target(coverage
     COMMAND lcov -c -d . -o coverage.info
+    COMMAND lcov --remove coverage.info "*/usr/*" -o coverage.info
+    COMMAND lcov --remove coverage.info "*/opt/*" -o coverage.info
+    COMMAND lcov --remove coverage.info "*/boost/*" -o coverage.info
+    COMMAND lcov --remove coverage.info "bug-introducer.hpp" -o coverage.info
     COMMAND genhtml --legend coverage.info
 )
 
