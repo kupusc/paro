@@ -4,8 +4,6 @@ project (tdd-boost-turtle-training)
 set (TDD_BOOST_TURTLE_TRAINING_VERSION_MAJOR 1)
 set (TDD_BOOST_TURTLE_TRAINING_VERSION_MINOR 0)
 
-# configure a header file to pass some of the CMake settings
-# to the source code
 configure_file (
     ${PROJECT_SOURCE_DIR}/config.h.in
     ${PROJECT_BINARY_DIR}/config.h
@@ -13,9 +11,9 @@ configure_file (
 
 add_definitions(-include config.h)
 
-set(BUILD_SHARED_LIBS true)
-set(Boost_NO_SYSTEM_PATHS true)
-set(BOOST_ROOT /work/boost_1.46.1)
+set(BUILD_SHARED_LIBS     true              )
+set(Boost_NO_SYSTEM_PATHS true              )
+set(BOOST_ROOT            /work/boost_1.46.1)
 
 find_package( Boost 1.46.1 COMPONENTS unit_test_framework thread program_options)
 
@@ -26,35 +24,34 @@ include_directories(
     .
 )
 
-add_executable(boost-playground boost-playground.cc)
-add_library(calculator calculator.cc)
-add_library(bogus-calculator bogus-calculator.cc)
-add_executable(calculator-tests calculator-tests.cc)
-add_executable(tests-tester tests-tester.cc)
+#add_executable(boost-playground boost-playground.cc)
+add_library(   calculator       calculator.cc      )
+add_library(   implementation   bogus-calculator.cc)
+add_executable(test-application calculator-tests.cc)
+add_executable(mutation-tester  tests-tester.cc    )
 
-set_target_properties(bogus-calculator 
+set_target_properties(implementation
     PROPERTIES COMPILE_FLAGS "-fprofile-arcs -ftest-coverage"
 	       LINK_FLAGS "-coverage"
 )
    
-target_link_libraries(boost-playground ${Boost_LIBRARIES})
-target_link_libraries(calculator-tests bogus-calculator ${Boost_LIBRARIES})
-target_link_libraries(tests-tester ${Boost_LIBRARIES})
+#target_link_libraries(boost-playground ${Boost_LIBRARIES}              )
+target_link_libraries(test-application implementation ${Boost_LIBRARIES})
+target_link_libraries(mutation-tester  ${Boost_LIBRARIES}               )
 
-get_filename_component(calculator_tests_path calculator-tests ABSOLUTE)
+get_filename_component(${CMAKE_SOURCE_DIRECTORY}/calculator_tests_path test-application ABSOLUTE)
 
-add_custom_target(test
-    COMMAND tests-tester --input ${CMAKE_BINARY_DIR}/calculator-tests --verbose
-    DEPEND  clean_coverage
-    COMMENT "Running all executables"
+add_custom_target(mutation-testing
+    COMMAND mutation-tester --input ${CMAKE_BINARY_DIR}/test-application --verbose
 )
 
-add_custom_target(run
-    COMMAND calculator-tests
-    DEPEND clean_coverage
+add_custom_target(implementation-testing
+    COMMAND test-application
 )
 
 add_custom_target(coverage
+    COMMAND find . -name *.gcda | xargs rm -f
+    COMMAND cmake --build . --target implementation-testing
     COMMAND lcov -c -d . -o coverage.info
     COMMAND lcov --remove coverage.info "*/usr/*" -o coverage.info
     COMMAND lcov --remove coverage.info "*/opt/*" -o coverage.info
@@ -63,6 +60,3 @@ add_custom_target(coverage
     COMMAND genhtml --legend coverage.info
 )
 
-add_custom_target(clean_coverage
-    COMMAND find . -name *.gcda | xargs rm -f
-)
