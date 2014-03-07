@@ -46,6 +46,6 @@
 #endif
 
 #define MOCK_ERROR_POLICY obmc_boost_test_error_policy
-#include <original_boost_mt_core/test_framework/turtle_obmc/obmc_boost_test_error.hpp>
+#include <test_framework/turtle_obmc/obmc_boost_test_error.hpp>
 
 #endif // MOCK_CONFIG_HPP_INCLUDED

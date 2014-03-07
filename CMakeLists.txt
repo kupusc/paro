@@ -20,7 +20,7 @@ find_package( Boost 1.46.1 COMPONENTS unit_test_framework thread program_options
 include_directories(
     ${PROJECT_BINARY_DIR}
     ${Boost_INCLUDE_DIRS}
-    original_boost_mt_core/test_framework
+    test_framework
     .
 )
 
