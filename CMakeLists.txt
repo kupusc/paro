@@ -15,7 +15,7 @@ set(BUILD_SHARED_LIBS     true              )
 set(Boost_NO_SYSTEM_PATHS true              )
 set(BOOST_ROOT            /var/fpwork/boost_1_55_0)
 
-find_package( Boost 1.46.1 COMPONENTS unit_test_framework thread program_options)
+find_package( Boost 1.46.1 COMPONENTS unit_test_framework thread program_options system)
 
 include_directories(
     ${PROJECT_BINARY_DIR}
