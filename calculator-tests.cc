@@ -1,6 +1,3 @@
-#include <iostream>
-#include <unistd.h>
-
 #define BOOST_AUTO_TEST_MAIN
 #define BOOST_TEST_MODULE calculator_tests
 #define BOOST_TEST_DYN_LINK
