@@ -9,7 +9,7 @@ configure_file (
     ${PROJECT_BINARY_DIR}/config.h
 )
 
-add_definitions(-include config.h)
+add_definitions(-include config.h -std=c++11)
 
 set(BUILD_SHARED_LIBS     true              )
 set(Boost_NO_SYSTEM_PATHS true              )
