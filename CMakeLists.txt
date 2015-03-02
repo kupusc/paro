@@ -50,7 +50,8 @@ add_custom_target(implementation-testing
 )
 
 add_custom_target(coverage
-    COMMAND find . -name *.gcda | xargs rm -f
+    COMMAND find . -name \"*.gcda\" | xargs rm -f
+    COMMAND find . -name \"*.html\" | xargs rm -f
     COMMAND cmake --build . --target implementation-testing
     COMMAND lcov -c -d . -o coverage.info
     COMMAND lcov --remove coverage.info "*/usr/*" -o coverage.info

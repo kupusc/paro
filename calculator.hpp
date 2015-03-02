@@ -8,6 +8,13 @@ namespace problem
 {
     void initBugs();
 
+    /** @brief Interface for Randomization*/
+    struct IRandomize
+    {
+	virtual ~IRandomize();
+	virtual int getInt();
+    };
+
     /** @brief A predicate
     *
     * See http://en.wikipedia.org/wiki/Predicate_%28mathematical_logic%29
@@ -70,6 +77,15 @@ namespace problem
     struct Calculator
     {
         Calculator();
+
+	/** @brief returns The Answer To The Ultimate Question*/	
+	int return42();
+
+	/** @brief returns the sum of integers */
+	int returnSum(int a, int b);
+
+	/** @brief The same but using time consuming technique*/
+	int return42UsingRandomNumbers(IRandomize &engine);
 
         /** @brief Finds first i >= 0, that predicate(start + i * step) is true
         *
