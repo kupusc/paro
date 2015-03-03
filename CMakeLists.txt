@@ -26,7 +26,7 @@ include_directories(
 
 #add_executable(boost-playground boost-playground.cc)
 add_library(   calculator       calculator.cc      )
-add_library(   implementation   bogus-calculator.cc)
+add_library(   implementation   bogus-calculator.cc bogus-calculator-part.cc)
 add_executable(test-application calculator-tests.cc)
 add_executable(mutation-tester  tests-tester.cc    )
 

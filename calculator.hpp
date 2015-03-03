@@ -12,7 +12,7 @@ namespace problem
     struct IRandomize
     {
 	virtual ~IRandomize();
-	virtual int getInt();
+	virtual int get42();
     };
 
     /** @brief A predicate
@@ -74,6 +74,11 @@ namespace problem
         virtual void take(const CustomStruct &custom)=0;
     };
 
+    struct LegacyRandom
+    {
+	int get42();
+    };
+
     struct Calculator
     {
         Calculator();
@@ -84,8 +89,11 @@ namespace problem
 	/** @brief returns the sum of integers */
 	int returnSum(int a, int b);
 
-	/** @brief The same but using time consuming technique*/
+	/** @brief The same but using delegation*/
 	int return42UsingRandomNumbers(IRandomize &engine);
+
+	/** @brief Time inefficient  version, without a possibility to mock with dynamic polymorphism (WHAT TO DO :O)*/
+	int return42UsingLegacyRandom();
 
         /** @brief Finds first i >= 0, that predicate(start + i * step) is true
         *
