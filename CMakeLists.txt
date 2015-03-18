@@ -26,9 +26,9 @@ include_directories(
 
 #add_executable(boost-playground boost-playground.cc)
 add_library(   calculator       calculator.cc      )
-add_library(   implementation   bogus-calculator.cc bogus-calculator-part.cc)
+add_library(   implementation   bogus-calculator.cc bogus-calculator-part.cc bug-introducer.cc)
 add_executable(test-application calculator-tests.cc)
-add_executable(mutation-tester  tests-tester.cc    )
+add_executable(mutation-tester  tests-tester.cc )
 
 set_target_properties(implementation
     PROPERTIES COMPILE_FLAGS "-fprofile-arcs -ftest-coverage"
@@ -36,7 +36,7 @@ set_target_properties(implementation
 )
    
 #target_link_libraries(boost-playground ${Boost_LIBRARIES}              )
-target_link_libraries(test-application implementation ${Boost_LIBRARIES})
+target_link_libraries(test-application implementation ${Boost_LIBRARIES} pthread)
 target_link_libraries(mutation-tester  ${Boost_LIBRARIES}               )
 
 get_filename_component(${CMAKE_SOURCE_DIRECTORY}/calculator_tests_path test-application ABSOLUTE)
