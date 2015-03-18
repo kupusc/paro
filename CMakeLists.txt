@@ -26,7 +26,8 @@ include_directories(
 
 #add_executable(boost-playground boost-playground.cc)
 add_library(   calculator       calculator.cc      )
-add_library(   implementation   bogus-calculator.cc bogus-calculator-part.cc bug-introducer.cc)
+add_library(   bug-introducer   bug-introducer.cc  )
+add_library(   implementation   bogus-calculator.cc bogus-calculator-part.cc)
 add_executable(test-application calculator-tests.cc)
 add_executable(mutation-tester  tests-tester.cc )
 
@@ -36,7 +37,7 @@ set_target_properties(implementation
 )
    
 #target_link_libraries(boost-playground ${Boost_LIBRARIES}              )
-target_link_libraries(test-application implementation ${Boost_LIBRARIES} pthread)
+target_link_libraries(test-application implementation ${Boost_LIBRARIES} bug-introducer pthread)
 target_link_libraries(mutation-tester  ${Boost_LIBRARIES}               )
 
 get_filename_component(${CMAKE_SOURCE_DIRECTORY}/calculator_tests_path test-application ABSOLUTE)
@@ -57,7 +58,7 @@ add_custom_target(coverage
     COMMAND lcov --remove coverage.info "*/usr/*" -o coverage.info
     COMMAND lcov --remove coverage.info "*/opt/*" -o coverage.info
     COMMAND lcov --remove coverage.info "*/boost/*" -o coverage.info
-    COMMAND lcov --remove coverage.info "bug-introducer.hpp" -o coverage.info
+    COMMAND lcov --remove coverage.info "bug-introducer.*" -o coverage.info
     COMMAND genhtml --legend coverage.info
 )
 
