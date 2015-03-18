@@ -1,5 +1,13 @@
 #include "bug-introducer.hpp"
 
+namespace problem
+{
+    void initBugs()
+    {
+        bug_introducer::detail::Registry::getInstance().init();
+    }
+}
+
 namespace bug_introducer
 {
     namespace detail

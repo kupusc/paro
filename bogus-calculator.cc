@@ -13,12 +13,6 @@ namespace problem
 	void increaseCoverage2();
 	void increaseCoverage3();
 
-    void initBugs()
-    {
-        bug_introducer::detail::Registry::getInstance().init();
-    }
-
-
     Calculator::Calculator()
     {
     	increaseCoverage();
