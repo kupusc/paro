@@ -5,7 +5,7 @@
 #include <boost/test/auto_unit_test.hpp>
 #include <turtle/mock.hpp>
 
-#include <implementation/implementation.hpp>
+#include <implementation/calculator.hpp>
 
 using namespace std;
 using namespace problem;

@@ -23,9 +23,9 @@ include_directories(
 )
 
 add_library(   bug-introducer   mutation/bug-introducer.cc  )
-add_library(   implementation   implementation/implementation.cc implementation/implementation-other-part.cc)
+add_library(   implementation   implementation/calculator.cc implementation/calculator-other-part.cc)
 add_library(   third-party      third-party.cpp    )
-add_executable(test-application implementation/implementation-tests.cc)
+add_executable(test-application implementation/calculator-tests.cc)
 add_executable(mutation-tester  mutation/tests-tester.cc )
 
 set_target_properties(implementation
