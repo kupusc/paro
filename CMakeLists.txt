@@ -14,8 +14,9 @@ add_definitions(-include config.h -std=c++11)
 set(BUILD_SHARED_LIBS     true              )
 #set(Boost_NO_SYSTEM_PATHS true              )
 #set(BOOST_ROOT            /var/fpwork/boost_1_55_0)
+#set(BOOST_LIBRARYDIR /usr/lib/i386-linux-gnu)
 
-find_package( Boost 1.46.1 COMPONENTS unit_test_framework thread program_options system)
+find_package( Boost 1.46.1 REQUIRED COMPONENTS unit_test_framework thread program_options system)
 
 include_directories(
     ${PROJECT_BINARY_DIR}
@@ -38,8 +39,8 @@ set_target_properties(implementation
 )
    
 #target_link_libraries(boost-playground ${Boost_LIBRARIES}              )
-target_link_libraries(test-application implementation third-party ${Boost_LIBRARIES} bug-introducer pthread)
-target_link_libraries(mutation-tester  ${Boost_LIBRARIES}               )
+target_link_libraries(test-application implementation third-party -Wl,--no-as-needed ${Boost_LIBRARIES} -Wl,--as-needed bug-introducer pthread)
+target_link_libraries(mutation-tester -Wl,--no-as-needed ${Boost_LIBRARIES}               )
 
 get_filename_component(${CMAKE_SOURCE_DIRECTORY}/calculator_tests_path test-application ABSOLUTE)
 
