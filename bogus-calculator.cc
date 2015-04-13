@@ -15,6 +15,7 @@ namespace problem
 
     Calculator::Calculator()
     {
+        initBugs();
     	increaseCoverage();
 		if(INTRODUCE_BUG(false))
 			throw std::runtime_error("Construction bailed out!");
