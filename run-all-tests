@@ -1,0 +1,4 @@
+#!/bin/bash
+#build_dir=/var/tmp/boost-turtle-training-output
+build_dir="$1"
+cmake --build ${build_dir} --target implementation-testing; echo;cmake --build ${build_dir} --target coverage |tail -n3; echo;cmake --build ${build_dir} --target mutation-testing | grep "FAILED\|PASSED"
