@@ -12,9 +12,6 @@ configure_file (
 add_definitions(-include config.h -std=c++11)
 
 set(BUILD_SHARED_LIBS     true              )
-#set(Boost_NO_SYSTEM_PATHS true              )
-#set(BOOST_ROOT            /var/fpwork/boost_1_55_0)
-#set(BOOST_LIBRARYDIR /usr/lib/i386-linux-gnu)
 
 find_package( Boost 1.46.1 REQUIRED COMPONENTS unit_test_framework thread program_options system)
 
@@ -25,20 +22,17 @@ include_directories(
     .
 )
 
-#add_executable(boost-playground boost-playground.cc)
-add_library(   calculator       calculator.cc      )
-add_library(   bug-introducer   bug-introducer.cc  )
-add_library(   implementation   bogus-calculator.cc bogus-calculator-part.cc)
+add_library(   bug-introducer   mutation/bug-introducer.cc  )
+add_library(   implementation   implementation/implementation.cc implementation/implementation-other-part.cc)
 add_library(   third-party      third-party.cpp    )
-add_executable(test-application calculator-tests.cc)
-add_executable(mutation-tester  tests-tester.cc )
+add_executable(test-application implementation/implementation-tests.cc)
+add_executable(mutation-tester  mutation/tests-tester.cc )
 
 set_target_properties(implementation
     PROPERTIES COMPILE_FLAGS "-fprofile-arcs -ftest-coverage"
 	       LINK_FLAGS "-coverage"
 )
    
-#target_link_libraries(boost-playground ${Boost_LIBRARIES}              )
 target_link_libraries(test-application implementation third-party -Wl,--no-as-needed ${Boost_LIBRARIES} -Wl,--as-needed bug-introducer pthread)
 target_link_libraries(mutation-tester -Wl,--no-as-needed ${Boost_LIBRARIES}               )
 
