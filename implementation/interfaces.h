@@ -10,8 +10,8 @@ namespace problem
     /** @brief Interface for Randomization*/
     struct IRandomize
     {
-        virtual ~IRandomize();
-        virtual int get42();
+        virtual ~IRandomize(){};
+        virtual int get42() = 0;
     };
 
     /** @brief A predicate
